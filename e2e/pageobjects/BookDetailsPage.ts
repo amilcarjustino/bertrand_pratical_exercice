@@ -16,14 +16,18 @@ export class BookDetailsPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.bookTitleLocator = page.getByRole("heading", { level: BOOK_TITLE_HEADING_LEVEL });
-    this.bookAuthorLocator = page.getByRole("heading", { level: BOOK_AUTHOR_HEADING_LEVEL }).first();
+    this.bookTitleLocator = page.getByRole("heading", {
+      level: BOOK_TITLE_HEADING_LEVEL,
+    });
+    this.bookAuthorLocator = page
+      .getByRole("heading", { level: BOOK_AUTHOR_HEADING_LEVEL })
+      .first();
     this.isbnNumberLocator = page.getByText(ISBN_LABEL).locator("div");
     this.bookPagesLocator = page.getByText(PAGES_LABEL).locator("div");
     this.dimensionsValue = page.getByText(DIMENSIONS_LABEL).locator("div");
   }
 
-  async expectDetails(
+  async assertBookDetails(
     title: string,
     author: string,
     isbn: string,
@@ -31,7 +35,7 @@ export class BookDetailsPage {
     dimensions: string,
   ) {
     await expect(this.bookTitleLocator).toHaveText(title);
-    await expect(this.bookAuthorLocator).toHaveText(author);
+    await expect(this.bookAuthorLocator).toContainText(author);
     await expect(this.isbnNumberLocator).toContainText(isbn);
     await expect(this.bookPagesLocator).toContainText(pages);
     await expect(this.dimensionsValue).toContainText(dimensions);

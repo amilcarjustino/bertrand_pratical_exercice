@@ -17,7 +17,7 @@ test("Scenario 1: Search book and validate details", async ({ page }) => {
   await homePage.clickFirstBook(testBook1.title);
 
   const bookDetailsPage = new BookDetailsPage(page);
-  await bookDetailsPage.expectDetails(
+  await bookDetailsPage.assertBookDetails(
     testBook1.title,
     testBook1.author,
     testBook1.isbn,
