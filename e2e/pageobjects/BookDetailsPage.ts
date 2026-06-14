@@ -9,6 +9,9 @@ const OTHER_AUTHOR_BOOKS_HEADING = "Outros Livros Do Autor";
 const OTHER_AUTHOR_BOOKS_SECTION_SELECTOR =
   "#productPageSectionAboutAuthor-bestsellers-content";
 const LANGUAGE_LABEL = "idioma:";
+const PRODUCT_PAGE_LANGUAGE_FLAG_SELECTOR =
+  "#productPageRightSectionTop-languageFlag";
+const LANGUAGE_FLAG_ICON = ".icon.language-flag";
 
 export class BookDetailsPage {
   readonly page: Page;
@@ -35,9 +38,13 @@ export class BookDetailsPage {
     this.otherAuthorBooksSection = page.locator(OTHER_AUTHOR_BOOKS_SECTION_SELECTOR);
   }
 
+  async assertBookAuthor(expectedAuthor: string) {
+    await expect(this.bookAuthorLocator).toContainText(expectedAuthor);
+  }
+
   async assertBookDetails(title: string, author: string, isbn: string, pages: string, dimensions: string) {
     await expect(this.bookTitleLocator).toHaveText(title);
-    await expect(this.bookAuthorLocator).toContainText(author);
+    await this.assertBookAuthor(author);
     await expect(this.isbnNumberLocator).toContainText(isbn);
     await expect(this.bookPagesLocator).toContainText(pages);
     await expect(this.dimensionsValue).toContainText(dimensions);
@@ -52,12 +59,11 @@ export class BookDetailsPage {
   }
 
   async assertBookLanguage(language: string) {
-    await expect(this.page.getByText( `idioma: ${language}`, { exact: true })).toBeVisible();
-    await expect(this.page.locator('#productPageRightSectionTop-languageFlag')).toBeVisible();
-    await expect(this.page.locator(`.icon.language-flag.${language}`)).toBeVisible();
+    await expect(this.page.getByText(`${LANGUAGE_LABEL} ${language}`, { exact: true })).toBeVisible();
+    await expect(this.page.locator(PRODUCT_PAGE_LANGUAGE_FLAG_SELECTOR)).toBeVisible();
   }
 
   async assertBookLanguageFlag(language: string) {
-    await expect(this.page.locator(`.icon.language-flag.${language}`)).toBeVisible();
+    await expect(this.page.locator(`${LANGUAGE_FLAG_ICON}.${language}`)).toBeVisible();
   }
 }
