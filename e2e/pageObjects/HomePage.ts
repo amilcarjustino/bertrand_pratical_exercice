@@ -23,6 +23,12 @@ export class HomePage {
     await this.searchInputLocator.fill(bookTitle);
   }
 
+  async searchAndSelectTheBook(bookTitle: string) {
+    await this.goto();
+    await this.searchBook(bookTitle);
+    await this.clickFirstBook(bookTitle);
+  }
+
   async clickFirstBook(bookTitle: string) {
     await this.page.getByAltText(bookTitle).first().click();
   }
