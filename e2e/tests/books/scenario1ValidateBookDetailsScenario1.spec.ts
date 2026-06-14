@@ -16,7 +16,7 @@ test("Scenario 1: Search book and validate details", async ({ page }) => {
   // so I created the function searchAndSelectTheBook in the HomePage
   // to avoid code duplication, and favouring maintainability
   
-  await homePage.searchAndSelectTheBook(testBooks.bookDoNotDisturb.title);
+  await homePage.searchAndSelectTheBook(testBooks.book1984.title);
 
   const bookDetailsPage = new BookDetailsPage(page);
   await bookDetailsPage.assertBookDetails(

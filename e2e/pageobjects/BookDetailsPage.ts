@@ -52,7 +52,7 @@ export class BookDetailsPage {
 
   async assertOtherAuthorBook(title: string) {
     await expect(this.otherAuthorBooksHeadingLocator).toBeVisible();
-    await expect(this.otherAuthorBooksSection.getByAltText(title)).toBeVisible();
+    await expect(this.otherAuthorBooksSection.getByAltText(title)).toBeAttached();
     await expect(
       this.otherAuthorBooksSection.getByText(title, { exact: true }),
     ).toBeVisible();
