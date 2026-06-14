@@ -1,5 +1,11 @@
 import { expect, type Locator, type Page } from "@playwright/test";
 
+const BOOK_TITLE_HEADING_LEVEL = 1;
+const BOOK_AUTHOR_HEADING_LEVEL = 3;
+const ISBN_LABEL = "ISBN:";
+const PAGES_LABEL = "Páginas:";
+const DIMENSIONS_LABEL = "Dimensões:";
+
 export class BookDetailsPage {
   readonly page: Page;
   readonly bookTitleLocator: Locator;
@@ -10,11 +16,11 @@ export class BookDetailsPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.bookTitleLocator = page.getByRole("heading", { level: 1 });
-    this.bookAuthorLocator = page.getByRole("heading", { level: 3 });
-    this.isbnNumberLocator = page.getByText("ISBN:").locator("div");
-    this.bookPagesLocator = page.getByText("Páginas:").locator("div");
-    this.dimensionsValue = page.getByText("Dimensões:").locator("div");
+    this.bookTitleLocator = page.getByRole("heading", { level: BOOK_TITLE_HEADING_LEVEL });
+    this.bookAuthorLocator = page.getByRole("heading", { level: BOOK_AUTHOR_HEADING_LEVEL });
+    this.isbnNumberLocator = page.getByText(ISBN_LABEL).locator("div");
+    this.bookPagesLocator = page.getByText(PAGES_LABEL).locator("div");
+    this.dimensionsValue = page.getByText(DIMENSIONS_LABEL).locator("div");
   }
 
   async expectDetails(

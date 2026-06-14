@@ -1,5 +1,8 @@
 import { expect, type Locator, type Page } from "@playwright/test";
 
+const HOME_PAGE_URL = "https://www.bertrand.pt/";
+const SEARCH_INPUT_NAME = "texto para pesquisa";
+
 export class HomePage {
   readonly page: Page;
   readonly searchInputLocator: Locator;
@@ -7,12 +10,12 @@ export class HomePage {
   constructor(page: Page) {
     this.page = page;
     this.searchInputLocator = page.getByRole("textbox", {
-      name: "texto para pesquisa",
+      name: SEARCH_INPUT_NAME,
     });
   }
 
   async goto() {
-    await this.page.goto("https://www.bertrand.pt/");
+    await this.page.goto(HOME_PAGE_URL);
   }
 
   async searchBook(bookTitle: string) {
