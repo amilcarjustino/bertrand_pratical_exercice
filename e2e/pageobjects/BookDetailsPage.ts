@@ -8,6 +8,7 @@ const DIMENSIONS_LABEL = "Dimensões:";
 const OTHER_AUTHOR_BOOKS_HEADING = "Outros Livros Do Autor";
 const OTHER_AUTHOR_BOOKS_SECTION_SELECTOR =
   "#productPageSectionAboutAuthor-bestsellers-content";
+const LANGUAGE_LABEL = "idioma:";
 
 export class BookDetailsPage {
   readonly page: Page;
@@ -48,5 +49,11 @@ export class BookDetailsPage {
     await expect(
       this.otherAuthorBooksSection.getByText(title, { exact: true }),
     ).toBeVisible();
+  }
+
+  async assertBookLanguage(language: string) {
+    await expect(this.page.getByText( `idioma: ${language}`, { exact: true })).toBeVisible();
+    await expect(this.page.locator('#productPageRightSectionTop-languageFlag')).toBeVisible();
+    await expect(this.page.locator(`.icon.language-flag.${language}`)).toBeVisible();
   }
 }
