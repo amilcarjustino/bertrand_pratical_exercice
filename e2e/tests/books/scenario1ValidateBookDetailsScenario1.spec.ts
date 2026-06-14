@@ -5,9 +5,16 @@ import { testBooks } from "../../testData/testBooks";
 
 test("Scenario 1: Search book and validate details", async ({ page }) => {
   const homePage = new HomePage(page);
-  await homePage.goto();
-  await homePage.searchBook(testBooks.book1984.title);
-  await homePage.clickFirstBook(testBooks.book1984.title);
+  // Altough I like these action to be explicit in this test
+  // await homePage.goto();
+  // await homePage.searchBook(testBooks.book1984.title);
+  // await homePage.clickFirstBook(testBooks.book1984.title);
+  
+  // It is a repeated task in all the scenarios,
+  // so created the function searchAndSelectTheBook in the HomePage
+  // to avoid code duplication, and favouring maintainability
+  
+  await homePage.searchAndSelectTheBook(testBooks.bookDoNotDisturb.title);
 
   const bookDetailsPage = new BookDetailsPage(page);
   await bookDetailsPage.assertBookDetails(
