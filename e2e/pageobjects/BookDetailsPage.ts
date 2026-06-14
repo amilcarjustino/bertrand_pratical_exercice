@@ -5,6 +5,9 @@ const BOOK_AUTHOR_HEADING_LEVEL = 3;
 const ISBN_LABEL = "ISBN:";
 const PAGES_LABEL = "Páginas:";
 const DIMENSIONS_LABEL = "Dimensões:";
+const OTHER_AUTHOR_BOOKS_HEADING = "Outros Livros Do Autor";
+const OTHER_AUTHOR_BOOKS_SECTION_SELECTOR =
+  "#productPageSectionAboutAuthor-bestsellers-content";
 
 export class BookDetailsPage {
   readonly page: Page;
@@ -13,6 +16,8 @@ export class BookDetailsPage {
   readonly isbnNumberLocator: Locator;
   readonly bookPagesLocator: Locator;
   readonly dimensionsValue: Locator;
+  readonly otherAuthorBooksHeadingLocator: Locator;
+  readonly otherAuthorBooksSection: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -25,19 +30,23 @@ export class BookDetailsPage {
     this.isbnNumberLocator = page.getByText(ISBN_LABEL).locator("div");
     this.bookPagesLocator = page.getByText(PAGES_LABEL).locator("div");
     this.dimensionsValue = page.getByText(DIMENSIONS_LABEL).locator("div");
+    this.otherAuthorBooksHeadingLocator = page.getByText(OTHER_AUTHOR_BOOKS_HEADING);
+    this.otherAuthorBooksSection = page.locator(OTHER_AUTHOR_BOOKS_SECTION_SELECTOR);
   }
 
-  async assertBookDetails(
-    title: string,
-    author: string,
-    isbn: string,
-    pages: string,
-    dimensions: string,
-  ) {
+  async assertBookDetails(title: string, author: string, isbn: string, pages: string, dimensions: string) {
     await expect(this.bookTitleLocator).toHaveText(title);
     await expect(this.bookAuthorLocator).toContainText(author);
     await expect(this.isbnNumberLocator).toContainText(isbn);
     await expect(this.bookPagesLocator).toContainText(pages);
     await expect(this.dimensionsValue).toContainText(dimensions);
+  }
+
+  async assertOtherAuthorBook(title: string) {
+    await expect(this.otherAuthorBooksHeadingLocator).toBeVisible();
+    await expect(this.otherAuthorBooksSection.getByAltText(title)).toBeVisible();
+    await expect(
+      this.otherAuthorBooksSection.getByText(title, { exact: true }),
+    ).toBeVisible();
   }
 }

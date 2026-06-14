@@ -1,6 +1,6 @@
 import { expect, type Locator, type Page } from "@playwright/test";
 
-const HOME_PAGE_URL = "https://www.bertrand.pt/";
+const HOME_PAGE_URL = "/";
 const SEARCH_INPUT_NAME = "texto para pesquisa";
 
 export class HomePage {
