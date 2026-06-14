@@ -14,5 +14,6 @@ export const testBooks = {
     title: "Do Not Disturb",
     author: "Freida McFadden",
     language: "Inglês",
+    price: "12.16€",
   },
 };
