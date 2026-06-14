@@ -17,7 +17,7 @@ export class BookDetailsPage {
   constructor(page: Page) {
     this.page = page;
     this.bookTitleLocator = page.getByRole("heading", { level: BOOK_TITLE_HEADING_LEVEL });
-    this.bookAuthorLocator = page.getByRole("heading", { level: BOOK_AUTHOR_HEADING_LEVEL });
+    this.bookAuthorLocator = page.getByRole("heading", { level: BOOK_AUTHOR_HEADING_LEVEL }).first();
     this.isbnNumberLocator = page.getByText(ISBN_LABEL).locator("div");
     this.bookPagesLocator = page.getByText(PAGES_LABEL).locator("div");
     this.dimensionsValue = page.getByText(DIMENSIONS_LABEL).locator("div");
