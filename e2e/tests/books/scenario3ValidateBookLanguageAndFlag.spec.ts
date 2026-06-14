@@ -9,4 +9,5 @@ test("Scenario 3: Search book and validate language and flag", async ({ page }) 
 
   const bookDetailsPage = new BookDetailsPage(page);
   await bookDetailsPage.assertBookLanguage(testBooks.bookDoNotDisturb.language);
+  await bookDetailsPage.assertBookLanguageFlag(testBooks.bookDoNotDisturb.language);
 });

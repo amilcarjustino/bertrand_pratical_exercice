@@ -56,4 +56,8 @@ export class BookDetailsPage {
     await expect(this.page.locator('#productPageRightSectionTop-languageFlag')).toBeVisible();
     await expect(this.page.locator(`.icon.language-flag.${language}`)).toBeVisible();
   }
+
+  async assertBookLanguageFlag(language: string) {
+    await expect(this.page.locator(`.icon.language-flag.${language}`)).toBeVisible();
+  }
 }
