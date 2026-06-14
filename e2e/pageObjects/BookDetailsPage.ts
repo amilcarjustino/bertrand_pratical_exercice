@@ -12,6 +12,7 @@ const LANGUAGE_LABEL = "idioma:";
 const PRODUCT_PAGE_LANGUAGE_FLAG_SELECTOR =
   "#productPageRightSectionTop-languageFlag";
 const LANGUAGE_FLAG_ICON = ".icon.language-flag";
+const BUY_BUTTON_NAME = "Comprar";
 
 export class BookDetailsPage {
   readonly page: Page;
@@ -22,6 +23,7 @@ export class BookDetailsPage {
   readonly dimensionsValue: Locator;
   readonly otherAuthorBooksHeadingLocator: Locator;
   readonly otherAuthorBooksSection: Locator;
+  readonly buyButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -36,6 +38,7 @@ export class BookDetailsPage {
     this.dimensionsValue = page.getByText(DIMENSIONS_LABEL).locator("div");
     this.otherAuthorBooksHeadingLocator = page.getByText(OTHER_AUTHOR_BOOKS_HEADING);
     this.otherAuthorBooksSection = page.locator(OTHER_AUTHOR_BOOKS_SECTION_SELECTOR);
+    this.buyButton = page.getByRole("button", { name: BUY_BUTTON_NAME });
   }
 
   async assertBookAuthor(expectedAuthor: string) {
@@ -65,5 +68,9 @@ export class BookDetailsPage {
 
   async assertBookLanguageFlag(language: string) {
     await expect(this.page.locator(`${LANGUAGE_FLAG_ICON}.${language}`)).toBeVisible();
+  }
+
+  async addToCart() {
+    await this.buyButton.click();
   }
 }
