@@ -10,7 +10,7 @@ const testBook1 = {
   dimensions: "156 x 238 x 22 mm",
 };
 
-test("Search book and validate details", async ({ page }) => {
+test("Scenario 1: Search book and validate details", async ({ page }) => {
   const homePage = new HomePage(page);
   await homePage.goto();
   await homePage.searchBook(testBook1.title);
