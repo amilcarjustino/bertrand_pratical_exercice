@@ -2,7 +2,7 @@ import { expect, type Locator, type Page } from "@playwright/test";
 
 const CART_ITEM_SELECTOR = "#cestoProdutos";
 const CART_SECTION_SELECTOR = "#cart-section";
-const FREE_SHIPPING_TEXT = "Portes grátis";
+const FREE_SHIPPING_TEXT = "Portes grátisi";
 const QUANTITY_INPUT_NAME = "quantidade";
 const CART_BUTTON_NAME = "Cesto de compras";
 const CHECKOUT_BUTTON_NAME = "Checkout";
@@ -24,7 +24,7 @@ export class CartPage {
       name: QUANTITY_INPUT_NAME,
     });
     this.checkoutButton = page.getByRole("button", { name: CHECKOUT_BUTTON_NAME });
-    this.freeShippingTextLocator = page.getByText(FREE_SHIPPING_TEXT);
+    this.freeShippingTextLocator = page.getByText(FREE_SHIPPING_TEXT, { exact: true });
   }
 
   async openCart() {
