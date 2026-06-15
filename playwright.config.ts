@@ -26,10 +26,14 @@ export default defineConfig({
     /* Base URL to use in actions like `await page.goto('')`. */
     baseURL: process.env.BASE_URL ?? 'https://www.bertrand.pt/',
 
+     // Capture screenshot after each test failure.
     screenshot: 'only-on-failure',
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    // trace: 'on-first-retry',
-    trace: 'retain-on-failure',
+
+    // Record trace only when retrying a test for the first time.
+    trace: 'on-first-retry',
+
+    // Record video only when retrying a test for the first time.
+    video: 'on-first-retry'
   },
   timeout: 88_000,
 
