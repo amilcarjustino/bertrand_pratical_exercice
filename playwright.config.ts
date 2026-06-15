@@ -27,15 +27,14 @@ export default defineConfig({
     baseURL: process.env.BASE_URL ?? 'https://www.bertrand.pt/',
 
      // Capture screenshot after each test failure.
-    screenshot: 'only-on-failure',
+    // screenshot: 'only-on-failure',
 
     // Record trace only when retrying a test for the first time.
     trace: 'on-first-retry',
 
     // Record video only when retrying a test for the first time.
-    video: 'on-first-retry'
+    // video: 'on-first-retry'
   },
-  timeout: 88_000,
 
   /* Configure projects for major browsers */
   projects: [
