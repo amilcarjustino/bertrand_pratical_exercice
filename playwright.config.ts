@@ -48,6 +48,9 @@ export default defineConfig({
       use: { ...devices['Desktop Firefox'] },
     },
 
+    // This project was commented out because the bertrand website
+    // shows a robot captcha screen when accessed with the webkit browser
+    // causing the tests to fail.
     // {
     //   name: 'webkit',
     //   use: { ...devices['Desktop Safari'] },
